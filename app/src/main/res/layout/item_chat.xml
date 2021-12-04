@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:id="@+id/chat_view"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:id="@+id/user_chat_layout"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_width="38.0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="2.0dip">
+            <FrameLayout
+                android:id="@+id/chat_profile_imagelayout"
+                android:layout_width="fill_parent"
+                android:layout_height="38.0dip">
+                <ImageView
+                    android:id="@+id/chat_profile_bar_image"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" />
+            </FrameLayout>
+        </FrameLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:id="@+id/chat_layout"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/chat_userName"
+                android:padding="2dp"
+                android:textSize="14.0sp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="name" />
+            <TextView
+                android:layout_margin="3.0dip"
+                android:textSize="14.0sp"
+                android:padding="5.0dip"
+                android:id="@+id/chat_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/chat_user"
+                android:text="test"
+                android:textColor="@color/black"
+                android:maxEms="10" />
+        </LinearLayout>
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/room_notice_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/comment2_all"
+            android:padding="2dp"
+            android:layout_height="fill_parent">
+            <ImageView
+                android:id="@+id/notice_image"
+                android:visibility="gone"
+                android:background="@drawable/image_notice"
+                android:layout_width="23dp"
+                android:layout_height="23dp" />
+            <TextView
+                android:textColor="@color/white"
+                android:layout_margin="3.0dip"
+                android:textSize="11.0sp"
+                android:id="@+id/chat_notice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="test" />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background_default2"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+            <View
+                android:layout_width="10dp"
+                android:layout_height="fill_parent"/>
+            <EditText
+                android:id="@+id/edit_search_friend"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:background="@drawable/comment2_all"
+                android:hint="유저 이름을 입력하세요."
+                android:padding="5dp"
+                android:maxLength="8"
+                android:maxLines="1"
+                android:textColor="@color/white" />
+            <View
+                android:layout_width="10dp"
+                android:layout_height="fill_parent"/>
+            <ImageButton
+                android:id="@+id/btn_friend_search"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/btn_friend_search"
+                android:scaleType="fitCenter" />
+            <View
+                android:layout_width="10dp"
+                android:layout_height="fill_parent"/>
+        <ImageButton
+            android:id="@+id/btn_friend_request"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/btn_friend_alarm"
+            android:scaleType="fitCenter" />
+        <View
+            android:layout_width="10dp"
+            android:layout_height="fill_parent"/>
+    </LinearLayout>
+    <View
+        android:background="@drawable/background_bar_image"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:background="@drawable/btn_background6_image"
+        android:orientation="vertical">
+        <TextView
+            android:background="@drawable/btn_background7_image"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:text="친구 목록"/>
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/background_bar_image"/>
+        <ListView
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:id="@+id/friend_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:listSelector="#00000000"
+            android:transcriptMode="normal"
+            android:divider="#00000000"
+            android:dividerHeight="5dp"/>
+    </LinearLayout>
+</LinearLayout>

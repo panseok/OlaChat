@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background_default2"
+    android:orientation="vertical">
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/game_boom_spin_drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="5.0dip"
+        android:layout_weight="1.0">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50.0dip"
+                android:gravity="center">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/game_timer"/>
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/background_bar_image"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="참가자 목록"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+                <View
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@drawable/background_bar_image"/>
+                <GridView
+                    android:id="@+id/game_alive_boom_player_grid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:horizontalSpacing="4.0dip"
+                    android:listSelector="#00000000"
+                    android:numColumns="8"
+                    android:scrollbars="none"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="8.0dip" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="잘못 고르면 훅 갑니다.."
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+                <View
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@drawable/background_bar_image"/>
+                <GridView
+                    android:id="@+id/game_alive_boom_boom_grid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:horizontalSpacing="4.0dip"
+                    android:listSelector="#00000000"
+                    android:numColumns="4"
+                    android:scrollbars="none"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="8.0dip" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="5.0dip"
+                android:layout_weight="1.0">
+                <View
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@drawable/background_bar_image"/>
+                <ListView
+                    android:id="@+id/room_chat_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:stackFromBottom="true"
+                    android:background="@android:color/transparent"
+                    android:listSelector="#00000000"
+                    android:transcriptMode="normal"
+                    android:divider="#00000000"
+                    android:dividerHeight="0.20000005dp"
+                    />
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal"
+                android:background="#ffffffff"
+                android:layout_width="fill_parent"
+                android:layout_height="40.0dip"
+                android:weightSum="100.0">
+                <EditText
+                    android:textColor="@android:color/black"
+                    android:id="@+id/chat_edittext"
+                    android:background="#9a9c9c9c"
+                    android:layout_width="0.0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="5.0dip"
+                    android:maxLength="200"
+                    android:layout_weight="88.0" />
+                <ImageButton
+                    android:id="@+id/btn_send_chat"
+                    android:background="#00000000"
+                    android:padding="0.0dip"
+                    android:layout_width="0.0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="3.0dip"
+                    android:src="@drawable/btn_chat_send_setting"
+                    android:scaleType="centerCrop"
+                    android:layout_weight="12.0" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+</LinearLayout>
+

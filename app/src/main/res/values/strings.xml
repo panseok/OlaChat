@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Boom</string>
+    <string name="lobby_profile">내 정보</string>
+    <string name="lobby_roomlist">방 목록</string>
+    <string name="lobby_test">test</string>
+    <string name="kakao_app_key">461f0cfae5ca4803e6385d9c1d6dbce1</string>
+    <string name="dev_info">OlaChat Test App</string>
+    <string name="createUserNameHint">사용할 닉네임을 입력하세요.</string>
+    <string name="createRoomNameHint">사용할 방제목을 입력하세요.</string>
+</resources>

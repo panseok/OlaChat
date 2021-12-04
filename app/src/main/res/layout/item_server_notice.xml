@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/server_notice_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/notice_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[안내]"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:id="@+id/notice_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="공지사항 이름"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:id="@+id/notice_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="2021/10/21"
+            android:textSize="12sp"/>
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="30dp"
+        android:layout_gravity="left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:id="@+id/notice_comment"
+        android:visibility="gone"
+        android:text="공지의 전체 내용입니다."/>
+</LinearLayout>

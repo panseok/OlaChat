@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <FrameLayout
+        android:id="@+id/player_me_img"
+        android:background="@drawable/game_boom_spin_user"
+        android:layout_width="35dp"
+        android:layout_height="35dp">
+        <ImageView
+            android:id="@+id/player_dead_img"
+            android:background="@drawable/dead_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <ImageView
+            android:id="@+id/player_boom_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:background="@drawable/profile_bar_default_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
+    <TextView
+        android:id="@+id/player_name"
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="8sp"
+        android:text="닉네임"/>
+</LinearLayout>
