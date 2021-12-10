@@ -46,7 +46,7 @@ public class LobbyPagerAdapter extends PagerAdapter {
     //프로필
     public ImageButton lobby_profile_bar_imageBtn;
     public FrameLayout lobby__profile_image;
-    public TextView lobby_userName, lobby_userPopularity, lobby_userWin, lobby_userLose, lobby_userMemo;
+    public TextView lobby_userName, lobby_userPopularity, lobby_userWin, lobby_userLose, lobby_userMemo, lobby_userRecordPercent;
 
     public static LobbyPagerAdapter lobbyPagerAdapter;
 
@@ -88,12 +88,14 @@ public class LobbyPagerAdapter extends PagerAdapter {
                     lobby_userPopularity = (TextView) view.findViewById(R.id.lobby_userPopularity);
                     lobby_userWin = (TextView) view.findViewById(R.id.lobby_userWin);
                     lobby_userLose = (TextView) view.findViewById(R.id.lobby_userLose);
+                    lobby_userRecordPercent = (TextView) view.findViewById(R.id.lobby_userRecordPercent);
                     lobby_userMemo = (TextView) view.findViewById(R.id.lobby_userMemo);
 
 
                     lobby_userPopularity.setTextColor(Color.YELLOW);
                     lobby_userWin.setTextColor(Color.WHITE);
                     lobby_userLose.setTextColor(Color.WHITE);
+                    lobby_userRecordPercent.setTextColor(Color.WHITE);
 
                     lobby_profile_bar_imageBtn.setBackgroundResource(R.drawable.profile_bar_default_image);
                     lobby__profile_image.setBackgroundResource(DevTools.getProfileImageId(NettyClient.getUserProfileImageCode()));
@@ -101,6 +103,10 @@ public class LobbyPagerAdapter extends PagerAdapter {
                     lobby_userPopularity.setText("인기도 : "+NettyClient.getUserPopularity());
                     lobby_userWin.setText(NettyClient.getUserWin()+" 승");
                     lobby_userLose.setText(NettyClient.getUserLose()+" 패");
+
+                    int count = NettyClient.getUserWin() + NettyClient.getUserLose();
+                    double win_percent = ((double) NettyClient.getUserWin() / count) * 100.0;
+                    lobby_userRecordPercent.setText("("+String.format("%.2f",win_percent)+"%)");
                     lobby_userMemo.setText(NettyClient.getUserMemo());
 
                     lobby_profile_bar_imageBtn.setOnClickListener(new View.OnClickListener() {

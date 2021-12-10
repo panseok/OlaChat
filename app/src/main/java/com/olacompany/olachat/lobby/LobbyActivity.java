@@ -519,12 +519,9 @@ public class LobbyActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         alertDialog.dismiss();
-                      //  activity.moveTaskToBack(true);
                         activity.finish();
                         LoadingActivity.setConnected(false);
                         NettyClient.getSession().disconnect();
-
-                      //  activity.finishAffinity();
                         android.os.Process.killProcess(android.os.Process.myPid());
                     }
                 });
