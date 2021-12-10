@@ -141,6 +141,7 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
             }
 
             case USER_GET_USER_INFO:{
+                NettyClient.setUserInfo(r);
                 break;
             }
 

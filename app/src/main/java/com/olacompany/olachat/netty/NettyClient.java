@@ -159,7 +159,7 @@ public class NettyClient {
 
                         }
                     });
-            ChannelFuture f = b.connect("121.151.253.219",8484).sync();
+            ChannelFuture f = b.connect("121.159.16.63",8484).sync();
         }catch (InterruptedException e){
             e.printStackTrace();
         }
@@ -182,7 +182,7 @@ public class NettyClient {
 
                         }
                     });
-            ChannelFuture f = b.connect("121.151.253.219",8485).sync();
+            ChannelFuture f = b.connect("121.159.16.63",8485).sync();
         }catch (InterruptedException e){
             e.printStackTrace();
         }

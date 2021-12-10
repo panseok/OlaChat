@@ -99,8 +99,8 @@ public class LobbyPagerAdapter extends PagerAdapter {
                     lobby__profile_image.setBackgroundResource(DevTools.getProfileImageId(NettyClient.getUserProfileImageCode()));
                     lobby_userName.setText(NettyClient.getUserName());
                     lobby_userPopularity.setText("인기도 : "+NettyClient.getUserPopularity());
-                    lobby_userWin.setText("승 : "+NettyClient.getUserWin());
-                    lobby_userLose.setText("패 : "+NettyClient.getUserLose());
+                    lobby_userWin.setText(NettyClient.getUserWin()+" 승");
+                    lobby_userLose.setText(NettyClient.getUserLose()+" 패");
                     lobby_userMemo.setText(NettyClient.getUserMemo());
 
                     lobby_profile_bar_imageBtn.setOnClickListener(new View.OnClickListener() {
