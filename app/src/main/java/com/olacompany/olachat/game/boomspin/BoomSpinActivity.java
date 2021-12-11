@@ -241,8 +241,8 @@ public class BoomSpinActivity extends AppCompatActivity {
     }
 
     public void readSkillBookInfo(LittleEndianReader r){
-        int size0 = r.readInt();
-        for(int j = 0 ; j < size0; j++){
+        int size1 = r.readInt();
+        for(int j = 0 ; j < size1; j++){
             int skillcode = r.readInt();
             String skillname = r.readLengthAsciiString();
             String skillcomment = r.readLengthAsciiString();
@@ -255,19 +255,6 @@ public class BoomSpinActivity extends AppCompatActivity {
             });
         }
 
-        int size1 = r.readInt();
-        for(int j = 0 ; j < size1; j++){
-            int skillcode = r.readInt();
-            String skillname = r.readLengthAsciiString();
-            String skillcomment = r.readLengthAsciiString();
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    passive_skill_List.add(new PlayerSkill(skillcode,skillname,skillcomment));
-                    passiveSkillListAdapter.notifyDataSetChanged();
-                }
-            });
-        }
         int size2 = r.readInt();
         for(int j = 0 ; j < size2; j++){
             int skillcode = r.readInt();
