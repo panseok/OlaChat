@@ -135,6 +135,7 @@ public class UserInfo {
                 TextView userName = linearLayout.findViewById(R.id.dialog_profile_username);
                 TextView userWin = linearLayout.findViewById(R.id.dialog_profile_userWin);
                 TextView userLose = linearLayout.findViewById(R.id.dialog_profile_userLose);
+                TextView userRecord = linearLayout.findViewById(R.id.dialog_profile__userRecordPercent);
                 TextView userPopularity = linearLayout.findViewById(R.id.dialog_profile_userPopularity);
                 TextView userMemo = linearLayout.findViewById(R.id.dialog_profile_userMemo);
                 TextView isOnline_text = linearLayout.findViewById(R.id.dialog_profile_isOnline_text);
@@ -146,14 +147,17 @@ public class UserInfo {
                 userName.setTextColor(Color.WHITE);
                 userWin.setTextColor(Color.WHITE);
                 userLose.setTextColor(Color.WHITE);
+                userRecord.setTextColor(Color.WHITE);
                 userPopularity.setTextColor(Color.WHITE);
                 userMemo.setTextColor(Color.WHITE);
                 isOnline_text.setTextColor(Color.WHITE);
 
                 profileImage.setBackgroundResource(DevTools.getProfileImageId(n_profileImageCode));
                 userName.setText(n_userName);
-                userWin.setText("승 : "+n_userWin);
-                userLose.setText("패 : "+n_userLose);
+                userWin.setText(n_userWin+"승");
+                userLose.setText(n_userLose+"패");
+                double win_percent = ((double) n_userWin / (n_userWin + n_userLose) ) * 100.0;
+                userRecord.setText("("+String.format("%.2f",win_percent)+"%)");
                 userPopularity.setText("인기도 : "+n_userPopularity);
                 userMemo.setText(n_userMemo);
                 dialog_profile_isOnline.setBackgroundResource(isLogin ? R.drawable.img_user_on : R.drawable.img_user_off);
