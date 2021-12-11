@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.olacompany.olachat.R;
+import com.olacompany.olachat.devtool.DevTools;
 import com.olacompany.olachat.netty.NettyClient;
 
 import java.util.ArrayList;
@@ -65,12 +66,12 @@ public class PlayerOrderListAdapter extends BaseAdapter {
 
         boomImg.setVisibility(!players.get(i).isMyturn() ? View.INVISIBLE : View.VISIBLE);
         GlideDrawableImageViewTarget gifImage = new GlideDrawableImageViewTarget(boomImg);
-        Glide.with(context).load(R.drawable.turn_img).into(gifImage);
+        Glide.with(context).load(R.drawable.boom_turn_unscreen).into(gifImage);
 
         if(players.get(i).isMyturn()){
             myImg.setBackgroundResource(R.drawable.game_boom_spin_user_no_img);
         }else{
-            myImg.setBackgroundResource(R.drawable.game_boom_spin_user);
+            myImg.setBackgroundResource(DevTools.getProfileImageId(players.get(i).getUser().getProfile_code()));
         }
 
         if(players.get(i).getUser().getUserId() == NettyClient.getUserId()){
