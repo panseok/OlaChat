@@ -5,7 +5,7 @@
     android:orientation="vertical">
     <FrameLayout
         android:id="@+id/player_me_img"
-        android:background="@drawable/game_boom_spin_user"
+        android:background="@drawable/profile_2_image"
         android:layout_width="35dp"
         android:layout_height="35dp">
         <ImageView

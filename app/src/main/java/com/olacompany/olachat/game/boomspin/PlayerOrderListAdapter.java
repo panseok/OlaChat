@@ -68,11 +68,9 @@ public class PlayerOrderListAdapter extends BaseAdapter {
         GlideDrawableImageViewTarget gifImage = new GlideDrawableImageViewTarget(boomImg);
         Glide.with(context).load(R.drawable.boom_turn_unscreen).into(gifImage);
 
-        if(players.get(i).isMyturn()){
-            myImg.setBackgroundResource(R.drawable.game_boom_spin_user_no_img);
-        }else{
-            myImg.setBackgroundResource(DevTools.getProfileImageId(players.get(i).getUser().getProfile_code()));
-        }
+
+        myImg.setBackgroundResource(DevTools.getProfileImageId(players.get(i).getUser().getProfile_code()));
+
 
         if(players.get(i).getUser().getUserId() == NettyClient.getUserId()){
             player_name.setTextColor(Color.YELLOW);
