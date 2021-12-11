@@ -40,12 +40,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 public class BoomSpinActivity extends AppCompatActivity {
 
     private GridView playerOrderView;
-    private LinearLayout boom_spin_Boom_layout;
     private ListView game_boom_spin_notice_list, game_chat_listview, game_boom_spin_myskill_list, game_user_help_list, game_user_passive_skill_list, game_user_auction_skill_list;
     private DrawerLayout drawerLayout;
-    private ImageView btn_game_boom_spin_drawer, btn_game_boom_skill_book,boom_img;
+    private ImageView btn_game_boom_spin_drawer, btn_game_boom_skill_book;
     private ImageButton btn_game_boom_spin_send_chat;
-    private Button btn_boom_spin;
     private EditText chat_edittext;
     private TextView boom_time, boom_spin_mycoin, boom_spin_day;
 
@@ -77,7 +75,6 @@ public class BoomSpinActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_boom_spin);
         boomSpinActivity = this;
 
-        boom_spin_Boom_layout = findViewById(R.id.boom_spin_mytrun_layout);
         playerOrderView = findViewById(R.id.game_boom_spin_grid);
         drawerLayout = findViewById(R.id.game_boom_spin_drawer_layout);
         btn_game_boom_spin_drawer = findViewById(R.id.btn_game_boom_spin_drawer);
@@ -93,10 +90,7 @@ public class BoomSpinActivity extends AppCompatActivity {
         boom_time = findViewById(R.id.boom_time);
         boom_spin_mycoin = findViewById(R.id.boom_spin_mycoin);
         boom_spin_day = findViewById(R.id.boom_spin_day);
-        btn_boom_spin = findViewById(R.id.btn_boom_spin);
-        boom_img = findViewById(R.id.boom_img);
-        GlideDrawableImageViewTarget gifImage = new GlideDrawableImageViewTarget(boom_img);
-        Glide.with(this).load(R.drawable.boom_turn_unscreen).into(gifImage);
+
 
         playerOrderListAdapter = new PlayerOrderListAdapter(this,R.layout.item_game_boom_spin_player, players);
         playerOrderView.setAdapter(playerOrderListAdapter);
@@ -142,8 +136,6 @@ public class BoomSpinActivity extends AppCompatActivity {
         auction_skill_List.add(new PlayerSkill(14, "#y[바이러스]#l", "#w모든 플레이어들이 폭탄을 돌릴때마다#l #p[1~10초]#l#w씩 폭파 시간을 앞당긴다.#l"));
         auction_skill_List.add(new PlayerSkill(15, "#y[새치기]#l", "#w폭탄이 플레이어 순서대로 돌아가지 않고#l #p[랜덤]#l#w으로 돌아간다.#l"));
 
-        boom_spin_Boom_layout.setVisibility(View.GONE);
-
         btn_game_boom_spin_drawer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -178,12 +170,7 @@ public class BoomSpinActivity extends AppCompatActivity {
             }
         });
 
-        btn_boom_spin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NettyClient.getSession().writeAndFlush(BoomSpinPacket.sendBoomSpin());
-            }
-        });
+
     }
 
 
@@ -259,19 +246,6 @@ public class BoomSpinActivity extends AppCompatActivity {
         });
     }
 
-    public void readIsGetBoom(LittleEndianReader r){
-        boolean isGet = r.readByte() == 1;
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if(isGet){
-                    boom_spin_Boom_layout.setVisibility(View.VISIBLE);
-                }else{
-                    boom_spin_Boom_layout.setVisibility(View.GONE);
-                }
-            }
-        });
-    }
 
     public void readPlayerInfo(LittleEndianReader r){
         players.clear();
@@ -322,9 +296,13 @@ public class BoomSpinActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             if(userId == NettyClient.getUserId()) {
-                                boom_spin_Boom_layout.setVisibility(isTurn ? View.VISIBLE : View.GONE);
                                 if(isTurn){
                                     DevTools.showToastGameBoomSpinMsg(9);
+                                    BoomArrivalAlertDialog();
+                                }else{
+                                    if(alertDialog_auction != null){
+                                        alertDialog_auction.dismiss();
+                                    }
                                 }
                             }
                         }
@@ -341,7 +319,7 @@ public class BoomSpinActivity extends AppCompatActivity {
     }
 
 
-    private static AlertDialog  alertDialog = null;
+    private static AlertDialog  alertDialog_auction = null;
     private static LinearLayout linearLayout;
     private static Button btn_bid;
     private static EditText editPrice;
@@ -389,10 +367,10 @@ public class BoomSpinActivity extends AppCompatActivity {
                 editPrice.setText(low_bidR+"");
 
                 builder.setView(linearLayout);
-                alertDialog = builder.create();
-                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                alertDialog.setCancelable(false);
-                alertDialog.show();
+                alertDialog_auction = builder.create();
+                alertDialog_auction.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                alertDialog_auction.setCancelable(false);
+                alertDialog_auction.show();
 
                 btn_bid.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -460,6 +438,46 @@ public class BoomSpinActivity extends AppCompatActivity {
         });
     }
 
+
+    private static ImageView boom_gif_img;
+    private static TextView boom_arrival_text = null;
+
+    public static void BoomArrivalAlertDialog(){
+        Activity activity = NettyClient.getNowActivity(OlaChat.getInstance().getTopActivityName());
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (activity.getLayoutInflater() == null) {
+                    Log.e("Activity ERROR", "인플레이터가 NULL 입니다.");
+                    return;
+                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                linearLayout = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.alertdialog_boom_arrival,null);
+                boom_gif_img = linearLayout.findViewById(R.id.boom_gif_img);
+                boom_arrival_text = linearLayout.findViewById(R.id.boom_arrival_text);
+                GlideDrawableImageViewTarget gifImage = new GlideDrawableImageViewTarget(boom_gif_img);
+                Glide.with(activity).load(R.drawable.boom_turn_unscreen).into(gifImage);
+
+                boom_arrival_text.setText(DevTools.setTextColor("#w[#l#r폭탄#l#w을 돌릴려면 #l#r폭탄#l#w을 터치하세요!]#l"));
+
+                builder.setView(linearLayout);
+                alertDialog_auction = builder.create();
+                alertDialog_auction.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                alertDialog_auction.setCancelable(false);
+                alertDialog_auction.show();
+
+                boom_gif_img.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        NettyClient.getSession().writeAndFlush(BoomSpinPacket.sendBoomSpin());
+                    }
+                });
+            }
+        },0);
+    }
+
     public void handleBoomSpinReceive(LittleEndianReader r){
         /*
          * 0  날
@@ -523,8 +541,8 @@ public class BoomSpinActivity extends AppCompatActivity {
             }
 
             case 11:{
-                if(alertDialog != null){
-                    alertDialog.dismiss();
+                if(alertDialog_auction != null){
+                    alertDialog_auction.dismiss();
                 }
                 break;
             }

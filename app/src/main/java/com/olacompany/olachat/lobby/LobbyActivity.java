@@ -287,7 +287,7 @@ public class LobbyActivity extends AppCompatActivity {
                     public void afterTextChanged(Editable editable) {
                         text = editable.toString();
                         if (TextUtils.isEmpty(text)) {
-                            textViewHint.setText("부적절한 방제목을 사용시 제제될 수 있습니다.");
+                            textViewHint.setText("부적절한 제목을 사용시 제제될 수 있습니다.");
                             textViewHint.setTextColor(Color.GRAY);
                         } else if (DevTools.isOxfordText(String.valueOf(text))) {
                             textViewHint.setText("사용 불가능한 제목입니다.");
@@ -321,7 +321,7 @@ public class LobbyActivity extends AppCompatActivity {
                             NettyClient.getSession().writeAndFlush(LobbyPacket.sendCreateRoom(NettyClient.getUserId(), editText.getText().toString()));
                             alertDialog.dismiss();
                         } else {
-                            DevTools.showToastShortMsg(getInstance(), "사용 불가능한 방제목입니다.");
+                            DevTools.showToastShortMsg(getInstance(), "사용 불가능한 제목입니다.");
                         }
                     }
                 });

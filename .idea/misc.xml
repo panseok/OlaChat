@@ -12,11 +12,13 @@
         <entry key="..\:/OlaChat/app/src/main/res/layout/activity_chatroom.xml" value="0.33" />
         <entry key="..\:/OlaChat/app/src/main/res/layout/activity_friend.xml" value="0.48712667353244077" />
         <entry key="..\:/OlaChat/app/src/main/res/layout/activity_game_alive_boom.xml" value="0.37083333333333335" />
+        <entry key="..\:/OlaChat/app/src/main/res/layout/activity_game_boom_spin.xml" value="0.24322916666666666" />
         <entry key="..\:/OlaChat/app/src/main/res/layout/activity_game_boom_spin_main.xml" value="0.22" />
         <entry key="..\:/OlaChat/app/src/main/res/layout/activity_loading.xml" value="0.25" />
         <entry key="..\:/OlaChat/app/src/main/res/layout/activity_lobby.xml" value="0.25" />
         <entry key="..\:/OlaChat/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/OlaChat/app/src/main/res/layout/activity_main.xml" value="0.23314606741573032" />
+        <entry key="..\:/OlaChat/app/src/main/res/layout/alertdialog_boom_arrival.xml" value="0.24322916666666666" />
         <entry key="..\:/OlaChat/app/src/main/res/layout/alertdialog_boomspin_auction.xml" value="0.5" />
         <entry key="..\:/OlaChat/app/src/main/res/layout/alertdialog_create_room.xml" value="0.33" />
         <entry key="..\:/OlaChat/app/src/main/res/layout/alertdialog_create_username.xml" value="0.67" />
