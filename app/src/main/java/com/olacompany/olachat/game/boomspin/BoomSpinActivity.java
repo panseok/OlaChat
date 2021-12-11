@@ -68,6 +68,22 @@ public class BoomSpinActivity extends AppCompatActivity {
         return boomSpinActivity;
     }
 
+    @Override protected void onDestroy() {
+
+        if(alertDialog_auction != null){
+            alertDialog_auction.dismiss();
+            alertDialog_auction = null;
+        }
+        if(alertdialog_boom_arrival != null){
+            alertdialog_boom_arrival.dismiss();
+            alertdialog_boom_arrival = null;
+        }
+        super.onDestroy();
+
+    }
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -242,6 +258,7 @@ public class BoomSpinActivity extends AppCompatActivity {
             @Override
             public void run() {
                 boom_spin_day.setText(day+"");
+                DevTools.showToastGameBoomDaymsg(day);
             }
         });
     }
@@ -302,6 +319,7 @@ public class BoomSpinActivity extends AppCompatActivity {
                                 }else{
                                     if(alertDialog_auction != null){
                                         alertDialog_auction.dismiss();
+                                        alertDialog_auction = null;
                                     }
                                 }
                             }
@@ -438,7 +456,7 @@ public class BoomSpinActivity extends AppCompatActivity {
         });
     }
 
-
+    private static AlertDialog alertdialog_boom_arrival;
     private static ImageView boom_gif_img;
     private static TextView boom_arrival_text = null;
 
@@ -463,10 +481,10 @@ public class BoomSpinActivity extends AppCompatActivity {
                 boom_arrival_text.setText(DevTools.setTextColor("#w[#l#r폭탄#l#w을 돌릴려면 #l#r폭탄#l#w을 터치하세요!]#l"));
 
                 builder.setView(linearLayout);
-                alertDialog_auction = builder.create();
-                alertDialog_auction.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                alertDialog_auction.setCancelable(false);
-                alertDialog_auction.show();
+                alertdialog_boom_arrival = builder.create();
+                alertdialog_boom_arrival.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                alertdialog_boom_arrival.setCancelable(false);
+                alertdialog_boom_arrival.show();
 
                 boom_gif_img.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -543,6 +561,7 @@ public class BoomSpinActivity extends AppCompatActivity {
             case 11:{
                 if(alertDialog_auction != null){
                     alertDialog_auction.dismiss();
+                    alertDialog_auction = null;
                 }
                 break;
             }

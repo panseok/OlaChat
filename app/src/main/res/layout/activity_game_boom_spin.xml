@@ -17,17 +17,17 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="50.0dip"
-                android:gravity="center">
+                android:gravity="left|center">
                 <View
                     android:layout_width="10dp"
                     android:layout_height="fill_parent"/>
                 <LinearLayout
                     android:gravity="center"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.7"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:fontFamily="@font/christmascards"
                         android:padding="3dp"
                         android:textSize="18.0sp"
                         android:textColor="#ffffffff"
@@ -37,6 +37,7 @@
                         android:textStyle="bold"
                         android:text="Day " />
                     <TextView
+                        android:fontFamily="@font/christmascards"
                         android:id="@+id/boom_spin_day"
                         android:padding="3dp"
                         android:textSize="18.0sp"
@@ -48,12 +49,12 @@
                         android:text="0" />
                 </LinearLayout>
                 <View
-                    android:layout_width="10dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="fill_parent"/>
                 <LinearLayout
                     android:gravity="center"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <ImageView
@@ -61,6 +62,7 @@
                         android:layout_height="25dp"
                         android:background="@drawable/game_boom_spin_coin"/>
                     <TextView
+                        android:fontFamily="@font/christmascards"
                         android:id="@+id/boom_spin_mycoin"
                         android:textSize="18.0sp"
                         android:textColor="@color/white"
@@ -72,12 +74,12 @@
                         android:text="0" />
                 </LinearLayout>
                 <View
-                    android:layout_width="10dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="fill_parent"/>
                 <LinearLayout
                     android:gravity="center"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <ImageView
@@ -105,7 +107,8 @@
                         android:textStyle="bold"/>
                 </LinearLayout>
                 <View
-                    android:layout_width="10dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="fill_parent"/>
                 <ImageButton
                     android:layout_width="35dp"

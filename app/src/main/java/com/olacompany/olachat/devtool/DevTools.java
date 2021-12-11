@@ -10,11 +10,11 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.olacompany.olachat.OlaChat;
@@ -23,7 +23,6 @@ import com.olacompany.olachat.netty.NettyClient;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class DevTools {
 
@@ -84,7 +83,7 @@ public class DevTools {
             public void run() {
                 Activity activity = NettyClient.getNowActivity(OlaChat.getInstance().getTopActivityName());
                 LayoutInflater inflater = activity.getLayoutInflater();
-                View toastDesign = inflater.inflate(R.layout.toast_boom_layout, null);
+                View toastDesign = inflater.inflate(R.layout.toast_boomspin_imgview_layout, null);
 
                 ImageView toast_boom_img = toastDesign.findViewById(R.id.toast_boom_img);
                 if(mToast != null){
@@ -112,6 +111,31 @@ public class DevTools {
                         mToast.setDuration(Toast.LENGTH_LONG);
                         break;
                 }
+                mToast.setView(toastDesign);
+                mToast.show();
+            }
+        }, 0);
+    }
+
+    public static void showToastGameBoomDaymsg(int day){
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Activity activity = NettyClient.getNowActivity(OlaChat.getInstance().getTopActivityName());
+                LayoutInflater inflater = activity.getLayoutInflater();
+                View toastDesign = inflater.inflate(R.layout.toast_boomspin_daytext_layout, null);
+
+                TextView toast_boom_img = toastDesign.findViewById(R.id.toast_day_text);
+
+                toast_boom_img.setText("Day "+day);
+                if(mToast != null){
+                    mToast.cancel();
+                }
+                mToast = new Toast(activity.getApplicationContext());
+                mToast.setGravity(Gravity.CENTER, 0, 0); // CENTER를 기준으로 0, 0 위치에 메시지 출력
+
+                mToast.setDuration(Toast.LENGTH_SHORT);
                 mToast.setView(toastDesign);
                 mToast.show();
             }
