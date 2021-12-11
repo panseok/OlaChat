@@ -129,29 +129,6 @@ public class BoomSpinActivity extends AppCompatActivity {
         playerSkillListAdapter = new PlayerSkillListAdapter(this,R.layout.item_boomspin_skill,playerskills);
         game_boom_spin_myskill_list.setAdapter(playerSkillListAdapter);
 
-        //서버에서 쏴줘야될 내용들이지만 짜긴 귀찮음 나중에 하기로..
-        help_comment_list.add(new PlayerSkill(-1, "[폭탄돌리기]", "#p[최후의 1인]#l#w이 될때까지 살아남아라!#l"));
-        help_comment_list.add(new PlayerSkill(-1, "[기본]", "#w날마다 폭탄이 1개씩 돌아가며#l #p[최후의 생존자]#l#w가 나올때까지 진행된다.#l"));
-        help_comment_list.add(new PlayerSkill(-1, "[코인]", "#w날이 바뀔때 마다 #l#p[1000 코인]#l#w씩 지급되며 경매에서 쓸 수 있다.#l"));
-        help_comment_list.add(new PlayerSkill(-1, "[능력]", "#w날이 바뀔때 마다 기본 능력이 초기화되며 기본 능력 목록 중 1개의 능력이 선정된다.#l"));
-        help_comment_list.add(new PlayerSkill(-1, "[경매]", "#w날이 바뀔때 마다 시작되며 경매 능력 목록 중 1개의 능력이 판매된다.#l"));
-        help_comment_list.add(new PlayerSkill(-1, "[채팅]", "#w오른쪽 상단의 말풍선 버튼을 이용하여 플레이어들과 채팅을 할 수 있다.#l"));
-
-        passive_skill_List.add(new PlayerSkill(-1, "#r[사망]#l", "#w여긴 어디일까 할 수 있는 것은 없어 보인다. 상황을 지켜보자.#l"));
-        passive_skill_List.add(new PlayerSkill(0, "#r[봉인]#l", "#w턴마다 #l#p[5초]#l#w간 폭탄을 돌릴 수 없다.#l"));
-        passive_skill_List.add(new PlayerSkill(1, "#o[자폭]#l", "#w폭탄이 터지면 플레이어 중 한명을 데려간다.#l"));
-        passive_skill_List.add(new PlayerSkill(2, "#r[오작동]#l", "#w폭탄을 돌리지 않으면 #l#p[5초]#l#w마다#l #p[1 * 경과된 초%]#l #w확률로 폭탄이 터진다.#l"));
-        passive_skill_List.add(new PlayerSkill(3, "#g[방탄헬멧]#l", "#p[25%]#l #w확률로 #l#o[자폭] [럭키가이]#l#w  으로부터 생존 할 수 있다.#l"));
-        passive_skill_List.add(new PlayerSkill(4, "#o[불장난]#l", "#w폭탄을 돌릴때 마다 폭파 시간을 #l#p[3초]#l#w씩 앞당긴다.#l"));
-        passive_skill_List.add(new PlayerSkill(5, "#g[방패]#l", "#w폭탄이 터지는 것으로 부터 생존 할 수 있다.#l"));
-
-        auction_skill_List.add(new PlayerSkill(10, "#g[방탄조끼]#l", "#w폭탄이 터지거나#l #o[자폭] [럭키가이]#l #w으로부터 생존 할 수 있다.#l"));
-        auction_skill_List.add(new PlayerSkill(11, "#o[럭키가이]#l", "#p[25%]#l #w확률로 폭탄이 터지면 플레이어 중 한명이 대신 피해를 받는다.#l"));
-        auction_skill_List.add(new PlayerSkill(12, "#g[천리안]#l", "#w폭탄이 언제 터지는지 타이머를 볼 수 있게 된다.#l"));
-        auction_skill_List.add(new PlayerSkill(13, "#g[시간왜곡]#l", "#w나를 제외한 플레이어들에게 폭탄을 턴마다 5초간 돌릴 수 없게 만든다.#l"));
-        auction_skill_List.add(new PlayerSkill(14, "#y[바이러스]#l", "#w모든 플레이어들이 폭탄을 돌릴때마다#l #p[1~10초]#l#w씩 폭파 시간을 앞당긴다.#l"));
-        auction_skill_List.add(new PlayerSkill(15, "#y[새치기]#l", "#w폭탄이 플레이어 순서대로 돌아가지 않고#l #p[랜덤]#l#w으로 돌아간다.#l"));
-
         btn_game_boom_spin_drawer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -261,6 +238,62 @@ public class BoomSpinActivity extends AppCompatActivity {
                 DevTools.showToastGameBoomDaymsg(day);
             }
         });
+    }
+
+    public void readSkillBookInfo(LittleEndianReader r){
+        int size0 = r.readInt();
+        for(int j = 0 ; j < size0; j++){
+            int skillcode = r.readInt();
+            String skillname = r.readLengthAsciiString();
+            String skillcomment = r.readLengthAsciiString();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    help_comment_list.add(new PlayerSkill(skillcode,skillname,skillcomment));
+                    userHelpListAdapter.notifyDataSetChanged();
+                }
+            });
+        }
+
+        int size1 = r.readInt();
+        for(int j = 0 ; j < size1; j++){
+            int skillcode = r.readInt();
+            String skillname = r.readLengthAsciiString();
+            String skillcomment = r.readLengthAsciiString();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    passive_skill_List.add(new PlayerSkill(skillcode,skillname,skillcomment));
+                    passiveSkillListAdapter.notifyDataSetChanged();
+                }
+            });
+        }
+        int size2 = r.readInt();
+        for(int j = 0 ; j < size2; j++){
+            int skillcode = r.readInt();
+            String skillname = r.readLengthAsciiString();
+            String skillcomment = r.readLengthAsciiString();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    passive_skill_List.add(new PlayerSkill(skillcode,skillname,skillcomment));
+                    passiveSkillListAdapter.notifyDataSetChanged();
+                }
+            });
+        }
+        int size3 = r.readInt();
+        for(int j = 0 ; j < size3; j++){
+            int skillcode = r.readInt();
+            String skillname = r.readLengthAsciiString();
+            String skillcomment = r.readLengthAsciiString();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    auction_skill_List.add(new PlayerSkill(skillcode,skillname,skillcomment));
+                    auctionSkillListAdapter.notifyDataSetChanged();
+                }
+            });
+        }
     }
 
 
@@ -511,6 +544,8 @@ public class BoomSpinActivity extends AppCompatActivity {
          * 10 경매 타이머
          * 11 경매 종료
          * 12 폭탄이 도착함
+         * 13 폭탄토스트메세지
+         * 14 스킬 설명 리스트 리시브
          * */
         int code = r.readInt();
         switch (code){
@@ -571,6 +606,11 @@ public class BoomSpinActivity extends AppCompatActivity {
             }
             case 13:{
                 DevTools.showToastGameBoomSpinMsg(r.readInt());
+                break;
+            }
+
+            case 14:{
+                readSkillBookInfo(r);
                 break;
             }
 
