@@ -317,9 +317,9 @@ public class BoomSpinActivity extends AppCompatActivity {
                                     DevTools.showToastGameBoomSpinMsg(9);
                                     BoomArrivalAlertDialog();
                                 }else{
-                                    if(alertDialog_auction != null){
-                                        alertDialog_auction.dismiss();
-                                        alertDialog_auction = null;
+                                    if(alertdialog_boom_arrival != null){
+                                        alertdialog_boom_arrival.dismiss();
+                                        alertdialog_boom_arrival = null;
                                     }
                                 }
                             }
